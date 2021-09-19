@@ -4,7 +4,7 @@ const submit = document.querySelector("#submit");
 const mainTxt = document.querySelector(".main-txt");
 const typeTxt = document.querySelector(".type-txt");
 const result = document.querySelector(".result");
-const rtime = document.querySelector("#rtime");
+const raccu = document.querySelector("#raccu");
 const rwpm = document.querySelector("#rwpm");
 const rwrong = document.querySelector("#rwrong");
 const reset = document.querySelector("#reset");
@@ -15,6 +15,12 @@ reset.addEventListener("click", () => {
 let timeStart;
 let timeStop;
 let dur;
+
+const pasteBox = document.getElementById("no-paste");
+pasteBox.onpaste = (e) => {
+	e.preventDefault();
+	return false;
+};
 
 start.addEventListener("click", () => {
 	timeStart = new Date();
@@ -51,10 +57,7 @@ submit.addEventListener("click", () => {
 	typeTxt.style.display = "none";
 	result.style.display = "block";
 
-	rtime.innerHTML = dur + " min";
+	raccu.innerHTML = (typedata.length - wrong) / typedata.length;
 	rwpm.innerHTML = wpm;
 	rwrong.innerHTML = wrong;
-	console.log("Time taken = " + dur);
-	console.log("wpm = " + wpm);
-	console.log("wrong = " + wrong);
 });
